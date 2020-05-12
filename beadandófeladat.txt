@@ -1,0 +1,8 @@
+Saját ötlet és annak megvalósítása
+
+Követelmény:
+    -Felhasználói rendszer:
+        -Admin
+        -Felhasználó
+    -Több adattábla (legalább 3)
+    -Verziókövetés (Git)

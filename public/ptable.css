@@ -1,0 +1,73 @@
+table * {
+    margin: 2px;
+    padding: 0px;
+    border: 0px solid black;
+    position: relative;
+    background: transparent;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    background: transparent;
+    border-radius: 0px;
+    overflow: visible;
+    width: 80%;
+    height: auto;
+    font-size: 20px;
+    border: 1px solid black;
+  }
+
+table th {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    border: 2px solid black;
+}
+
+table td {
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+td {
+    line-height: auto;
+    width: 25%;
+}
+
+.btn{
+    margin-left: 0;
+}
+
+.btn-block {
+    display: block;
+    width: 50%;
+    height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"]
+{
+  width: 80%;
+  font-size: 20px;
+}
+
+#bemutatkozas {
+  display: inline-block;
+  resize: none;
+  width: 100%;
+  height: 150px;
+  text-align: left;
+  vertical-align: middle;
+  color: white;
+}
+
+#ment {
+  margin-left: 48%;
+}
