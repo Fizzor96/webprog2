@@ -43,6 +43,7 @@
     // 0 - debug , 1 - success , 2 - error
     $success = 0;
     $alert = "";
+    $cdata = "";
 
     if($_GET['A'] != "" || $_GET['S'] != 0)
     {
@@ -87,7 +88,34 @@
 ?>
 <?php endif; ?>
 
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['passchange'])):
+    $cdata = "password";
+    header('Location: index.php?P=modify&C='.$cdata);
+?>
+<?php endif; ?>
 
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['emailchange'])):
+    $cdata = "email";
+    header('Location: index.php?P=modify&C='.$cdata);
+?>
+<?php endif; ?>
+
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['imgdel'])):
+    $id = $_SESSION['uid'];
+    $adat = "";
+    $query = "UPDATE userdata SET kep = '$adat' WHERE uid = '$id'";
+
+    if(!executeDML($query, [])) {
+        $success = 2;
+        $alert = "Nem sikerült a művelet!";
+        header('Location: index.php?P=profile&A='.$alert.'&S='.$success);
+    } else {
+        $success = 1;
+        $alert = "Sikeres módosítás!";
+        header('Location: index.php?P=profile&A='.$alert.'&S='.$success);
+    }
+?>
+<?php endif; ?>
 
 <div class="alertbox">
     <?php if($success == 1) : ?>
@@ -103,6 +131,7 @@
     <center><h1></h1></center>
 <?php else : ?>
     <link href="/public/ptable.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/input.css" rel="stylesheet" type="text/css"/>
     <form method="POST">
     <table>
     <tbody>
@@ -110,31 +139,28 @@
             <th colspan="4">Profile</th>
         </tr>
         <tr>
-            <td rowspan="3"><center><img src="<?=$picture ?>" alt="Kép nem található"></center></td>
+            <td rowspan="4">
+                <img src="<?=$picture ?>" alt="Kép nem található">
+            </td>
             <td>UID: <?php print_r($_SESSION['uid']) ?></td>
-            <td></td>
-            <td></td>
+            <td colspan="2">Bemutatkozás:</td>
         </tr>
         <tr>
             <td>Username: <?php print_r($datas1['username']) ?></td>
-            <td></td>
-            <td></td>
+            <td colspan="2" rowspan="3"><input type="textarea" id="bemutatkozas" value="<?php print_r($datas2['bemutatkozas']) ?>" name="bemutatkozas"></td>
         </tr>
         <tr>
             <td>Permission Level: <?php print_r($_SESSION['permission']) ?></td>
-            <td><button type="submit" class="btn btn-block btn-primary" name="">Change Password</button></td>
-            <td></td>
         </tr>
         <tr>
-            <td><button type="submit" class="btn btn-block btn-primary" name="imgup">Kép feltöltése</button></td>
+
             <td>Email: <?php print_r($_SESSION['email']) ?></td>
-            <td><button type="submit" class="btn btn-block btn-primary" name="">Change Email</button></td>
-            <td></td>
         </tr>
         <tr>
             <td>Született:</td>
             <td><input type="text" value="<?php print_r($datas2['szulido']) ?>" name="szulido"></td>
-            <td colspan="2">Bemutatkozás:</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>Nem:</td>
@@ -146,21 +172,47 @@
                     <option value="2">Egyéb</option>
                 </select>
             </td>
-            <td colspan="2" rowspan="3"><input type="textarea" id="bemutatkozas" value="<?php print_r($datas2['bemutatkozas']) ?>" name="bemutatkozas"></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>Lakhely:</td>
             <td><input type="text" value="<?php print_r($datas2['lakhely']) ?>" name="lakhely"></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>Webhely:</td>
             <td><input type="text" value="<?php print_r($datas2['webhely']) ?>" name="webhely"></td>
+            <td>
+                <div class="wrapper">
+                    <button type="submit" class="btn btn-block btn-primary wrapbtn" name="imgup">Kép feltöltése</button>
+                </div>
+                <div class="wrapper">
+                    <button type="submit" class="btn btn-block btn-primary wrapbtn" name="imgdel">Kép törlése</button>
+                </div>
+            </td>
+            <td></td>
         </tr>
         <tr>
             <td>Github:</td>
             <td><input type="text" value="<?php print_r($datas2['github']) ?>" name="github"></td>
-            <td><button type="submit" class="btn btn-block btn-primary" name="refresh">Frissít</button></td>
-            <td><button type="submit" class="btn btn-block btn-primary" id="ment" name="mentes">Mentés</button></td>
+            <td>
+                <div class="wrapper">
+                    <button type="submit" class="btn btn-block btn-primary wrapbtn" name="passchange">Change Password</button>
+                </div>
+                <div class="wrapper">
+                <button type="submit" class="btn btn-block btn-primary wrapbtn" name="emailchange">Change Email</button>
+                </div>
+            </td>
+            <td>
+                <div class="wrapper">
+                    <button type="submit" class="btn btn-block btn-primary wrapbtn" name="refresh">Frissít</button>
+                </div>
+                <div class="wrapper">
+                    <button type="submit" class="btn btn-block btn-primary wrapbtn" name="mentes">Mentés</button>
+                </div>
+            </td>
         </tr>
     </tbody>
     </table>

@@ -67,10 +67,15 @@
             $alert = "Nem sikerült a művelet! ".$permission." ".$id;
             header('Location: index.php?P=users&A='.$alert.'&S='.$success);
         } else {
-            $success = 1;
-            $alert = "Módosítás végrehajtva";
-            //var_dump($_POST);
-            header('Location: index.php?P=users&A='.$alert.'&S='.$success);
+            if($_SESSION['uid'] == $id) {
+                header('Location: index.php?P=logout');
+            } else {
+                $success = 1;
+                $alert = "Módosítás végrehajtva";
+                //var_dump($_POST);
+                header('Location: index.php?P=users&A='.$alert.'&S='.$success);
+            }
+
         }
     } else {
         $success = 2;

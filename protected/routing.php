@@ -23,6 +23,8 @@ switch ($_GET['P']) {
 
 	case 'imageup': IsUserLoggedIn() ? require_once PROTECTED_DIR.'features/imageup.php' : header('Location: index.php'); break;
 
+	case 'modify': IsUserLoggedIn() ? require_once PROTECTED_DIR.'features/modify.php' : header('Location: index.php'); break;
+
 	default: require_once PROTECTED_DIR.'normal/404.php'; break;
 }
 

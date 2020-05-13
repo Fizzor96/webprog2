@@ -14,7 +14,7 @@
         <a class="nav-item nav-link" href="index.php?P=chat&A=''&S=0">Chat</a>
         <a class="nav-item nav-link" href="index.php?P=profile&A=''&S=0">Profile</a>
         <a class="nav-item nav-link" href="index.php?P=users&A=''&S=0">Users</a>
-        <a class="nav-item nav-link text-warning" href="index.php?P=imageup">ImageUP</a>
+        <!--<a class="nav-item nav-link text-warning" href="index.php?P=imageup">ImageUP</a> -->
 
         
 
