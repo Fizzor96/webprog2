@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `uzenet` varchar(255) NOT NULL,
   `ido` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table beadando.chat: ~2 rows (approximately)
+-- Dumping data for table beadando.chat: ~5 rows (approximately)
 /*!40000 ALTER TABLE `chat` DISABLE KEYS */;
 INSERT INTO `chat` (`id`, `uid`, `uzenet`, `ido`) VALUES
 	(46, 14, 'Welcome traveller!', '2020-05-13'),
@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table beadando.userdata: ~3 rows (approximately)
+-- Dumping data for table beadando.userdata: ~5 rows (approximately)
 /*!40000 ALTER TABLE `userdata` DISABLE KEYS */;
 INSERT INTO `userdata` (`uid`, `szulido`, `lakhely`, `nem`, `webhely`, `github`, `bemutatkozas`, `kep`) VALUES
 	(14, '1996-11-17', 'Egercsehi', 1, 'Én vagyok GROOOOOOT!', 'https://github.com/Fizzor96', 'Én vagyok GROOT!', '14groot9.jpg'),
 	(25, '2020-05-12', 'Valahol', 0, 'EZaz', 'van, de minek', 'Bemutatkozószöveg! Asderrrr', ''),
-	(26, '2020-01-12', 'awhdiouasjdoiasd', 0, 'ajwiodjasoid', 'aibusnpduiapsd', 'HUIASDHIPSAUD', '504f238a7a781e9dffd114a3792818d2.png'),
+	(26, '2020-01-12', 'AAAAAAAA', 1, 'BBBBBBBB', 'CCCCCCC', 'AAAAAAAAVVVVVVVVVBBBBBBB', '26groot10.jpg'),
 	(27, '1111-11-11', 'Én vagyok GROOT!', 2, 'Én vagyok GROOT!', 'Én vagyok GROOT!', 'Én vagyok GROOOOOOOT!', '27groot9.jpg');
 /*!40000 ALTER TABLE `userdata` ENABLE KEYS */;
 
@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `permission` int(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table beadando.users: ~3 rows (approximately)
+-- Dumping data for table beadando.users: ~5 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `permission`) VALUES
 	(14, 'dominik', '2891baceeef1652ee698294da0e71ba78a2a4064', 'szokedominik@gmail.com', 1),

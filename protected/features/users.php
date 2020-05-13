@@ -24,6 +24,7 @@
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['del'])):
     if($_SESSION['permission'] > 0) {
         $id = $_POST['del'];
+        $datas2 = getRecord("SELECT kep FROM userdata WHERE uid =".$id);
         $query = "DELETE FROM users WHERE id = '$id'";
         $query2 = "DELETE FROM userdata WHERE uid = '$id'";
         $query3 = "DELETE FROM chat WHERE uid = '$id'";
@@ -42,6 +43,7 @@
                     $alert = "Nem sikerült a 'chat' törlése!";
                     header('Location: index.php?P=users&A='.$alert.'&S='.$success);
                 } else {
+                    unlink('./public/userimages/'.$datas2['kep']);
                     $success = 1;
                     $alert = "Sikeres művelet!";
                     header('Location: index.php?P=users&A='.$alert.'&S='.$success);
