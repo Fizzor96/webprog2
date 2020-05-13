@@ -29,7 +29,7 @@
         $query3 = "DELETE FROM chat WHERE uid = '$id'";
         if(!executeDML($query, [])) {
             $success = 2;
-            $alert = "Nem sikerült a user törlése!";
+            $alert = "Nem sikerült a 'user' törlése!";
             header('Location: index.php?P=users&A='.$alert.'&S='.$success);
         } else {
             if(!executeDML($query2, [])) {
@@ -56,11 +56,12 @@
 ?>
 <?php endif; ?>
 
-<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit'])):
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editt'])):
     if($_SESSION['permission'] > 0){
-        $id = $_POST['edit'];
-        $permission = $_POST['permission'];
-        $query = "UPDATE users SET permission = '$permission' WHERE id = '$id'";
+        $id = $_POST['editt'];
+        //$perm = $_POST['perm'];
+        $perm = $_POST['perm'.$id];
+        $query = "UPDATE users SET permission = '$perm' WHERE id = '$id'";
         if(!executeDML($query, [])) {
             $success = 2;
             $alert = "Nem sikerült a művelet! ".$permission." ".$id;
@@ -68,6 +69,7 @@
         } else {
             $success = 1;
             $alert = "Módosítás végrehajtva";
+            //var_dump($_POST);
             header('Location: index.php?P=users&A='.$alert.'&S='.$success);
         }
     } else {
@@ -115,8 +117,8 @@
 						<td><?=$w['id'] ?></td>
 						<td><?=$w['username'] ?></td>
 						<td><?=$w['email'] ?></td>
-						<td><input type="text" id="permid" value="<?=$w['permission'] ?>" name="permission"></td>
-						<td><button type="submit" class="btn btn-primary" name="edit" value="<?=$w['id'] ?>">Edit</button></td>
+						<td><input type="text" id="permid" value="<?=$w['permission'] ?>" name="<?='perm'.$w['id']?>"></td>
+						<td><button type="submit" class="btn btn-primary" name="editt" value="<?=$w['id'] ?>">Edit</button></td>
 						<td><button type="submit" class="btn btn-primary" name="del" value="<?=$w['id'] ?>">Delete</button></td>
 					</tr>
 				<?php endforeach;?>
