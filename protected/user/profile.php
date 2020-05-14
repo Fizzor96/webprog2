@@ -112,6 +112,7 @@
     } else {
         $success = 1;
         $alert = "Sikeres módosítás!";
+        unlink('./public/userimages/' . $datas2['kep']);
         header('Location: index.php?P=profile&A='.$alert.'&S='.$success);
     }
 ?>
